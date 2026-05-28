@@ -1,0 +1,2 @@
+2026-05-28 00:18:57,548 - INFO - --- INICIO DE PROCESO ETL ---
+2026-05-28 00:18:57,550 - ERROR - Fallo crítico en ETL: 'utf-8' codec can't decode byte 0xf3 in position 24: invalid continuation byte
