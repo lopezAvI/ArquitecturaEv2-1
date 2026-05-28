@@ -89,7 +89,7 @@ class MotorETL:
 # --- INTERFAZ WEB CON STREAMLIT ---
 st.set_page_config(page_title="Panel ETL - Arquitectura", layout="wide")
 
-st.title("⚙️ Panel de Control ETL")
+st.title("Panel de Control ETL")
 st.markdown("Carga el archivo `.txt` para normalizar los datos de comunas e integrarlos a la base de datos oficial.")
 
 archivo_subido = st.file_uploader("Seleccionar Dataset (.txt)", type=["txt"])
@@ -101,16 +101,16 @@ if archivo_subido is not None:
                 etl = MotorETL()
                 total_leidos, total_unicos, descartados, lista_limpia = etl.ejecutar_etl(archivo_subido)
                 
-                st.success("✅ ¡PROCESO COMPLETADO CON ÉXITO!")
+                st.success("¡PROCESO COMPLETADO CON ÉXITO!")
                 
                 # Mostrar resumen
                 col1, col2, col3 = st.columns(3)
-                col1.metric("📄 Líneas leídas", total_leidos)
-                col2.metric("🗑️ Datos descartados/corregidos", descartados)
-                col3.metric("💾 Comunas únicas guardadas", total_unicos)
+                col1.metric("Líneas leídas", total_leidos)
+                col2.metric("Datos descartados/corregidos", descartados)
+                col3.metric("Comunas únicas guardadas", total_unicos)
                 
                 # Mostrar lista resultante
-                st.subheader("📊 DATOS LIMPIOS (COMUNAS_NORM)")
+                st.subheader("DATOS LIMPIOS (COMUNAS_NORM)")
                 df_mostrar = pd.DataFrame(lista_limpia, columns=["Comuna Normalizada"])
                 df_mostrar.index += 1
                 st.dataframe(df_mostrar, use_container_width=True)
@@ -119,7 +119,7 @@ if archivo_subido is not None:
                 try:
                     with open("log_cambios_etl.txt", "rb") as log_file:
                         st.download_button(
-                            label="📥 Descargar archivo Log",
+                            label="Descargar archivo Log",
                             data=log_file,
                             file_name="log_cambios_etl.txt",
                             mime="text/plain"
@@ -128,4 +128,4 @@ if archivo_subido is not None:
                     st.warning("El archivo log aún no se ha generado correctamente.")
                     
             except Exception as e:
-                st.error(f"❌ Ocurrió un error: {e}")
+                st.error(f"Ocurrió un error: {e}")
