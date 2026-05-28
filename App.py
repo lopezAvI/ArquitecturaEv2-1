@@ -58,7 +58,7 @@ class MotorETL:
                 if comuna in self.comunas_oficiales:
                     comunas_validadas.append(comuna)
                 else:
-                    similares = difflib.get_close_matches(comunas, self.comunas_oficiales, n=1, cutoff=0.80)
+                    similares = difflib.get_close_matches(comuna, self.comunas_oficiales, n=1, cutoff=0.80)
                     if similares:
                         comunas_validadas.append(similares[0])
             
